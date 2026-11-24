@@ -1,0 +1,136 @@
+### 1. Get all movies
+GET http://localhost:3000/movies
+
+### 2.Get a specific movie by ID
+GET http://localhost:3000/movies/1
+
+### 3. Get a movie that does not exist
+GET http://localhost:3000/movies/99
+
+### 4. Create a new movie
+
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Blade Runner",
+  "director": "Ridley Scott",
+  "year": 1982
+}
+
+### 5. Create a new movie with missing fields
+
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "director": "Nobody"
+}
+
+### 6. Check all movies after adding new movies
+
+GET http://localhost:3000/movies
+
+
+### 7. Update a movie
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "year": 2011
+}
+
+###
+
+### 8. Check updated movie
+GET http://localhost:3000/movies/1
+
+###
+
+### 9. Delete a movie
+DELETE http://localhost:3000/movies/1
+
+###
+
+### 10. Check deleted movie
+GET http://localhost:3000/movies/1
+
+###
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Inception",
+  "year": 2010,
+  "genre": "Sci-Fi"
+}
+###
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Interstellar",
+  "year": 2014,
+  "genre": "Sci-Fi"
+}
+###
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "",
+  "year": "not a number",
+  "genre": ""
+}
+
+### Test PUT - Replace movie
+PUT http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "Inception Updated",
+  "year": 2010,
+  "genre": "Sci-Fi"
+}
+
+### PATCH - Update only the movie title
+PATCH http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+  "title": "Inception PATCH Updated"
+}
+
+### DELETE - Delete movie with ID 1
+DELETE http://localhost:3000/movies/1
+
+###
+GET http://localhost:3000/movies?genre=sci-fi
+
+### Get movies from 2010 onwards
+GET http://localhost:3000/movies?minYear=2010
+
+### Get Sci-Fi movies from 2000 onwards
+GET http://localhost:3000/movies?genre=sci-fi&minYear=2000
+
+### Test invalid minimum year
+GET http://localhost:3000/movies?minYear=abc
+
+### Sort movies by year
+GET http://localhost:3000/movies?sort=year
+
+### Sort movies by title
+GET http://localhost:3000/movies?sort=title
+
+### Test invalid sorting
+GET http://localhost:3000/movies?sort=rating
+
+### Test an unknown route
+GET http://localhost:3000/unknown
+
+###
+DELETE http://localhost:3000/movies/2
+
+###
+GET http://localhost:3000/movies?minYear=
+
